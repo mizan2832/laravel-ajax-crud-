@@ -1,0 +1,44 @@
+  public function allData(){
+
+        $data = DB::table('testemployees')->get();
+        return response()->json($data);
+
+    }
+
+    public function storeData(Request $request){
+        $data = DB::table('testemployees')->insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'designation' => $request->designation,
+            'salary' => $request->salary
+        ]);
+    
+        return response()->json($data);
+    }
+    public function editData($id){
+      
+        $data = DB::table('testemployees')->find($id);
+    
+        return response()->json($data);
+    }
+    public function updateData($id, Request $request){
+      
+        $data = DB::table('testemployees')
+              ->where('id', $id)
+              ->update(
+                  [
+                      'name' => $request->name,
+                      'email'=> $request->email,
+                      'designation'=> $request->designation,
+                      'salary'=>$request->salary
+                  ]
+                );
+    
+        return response()->json($data);
+    }
+
+    public function empDelete($id){
+      
+        $data = DB::table('testemployees')->where('id', $id)->delete();
+        return response()->json($id);
+    }

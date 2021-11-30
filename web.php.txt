@@ -1,0 +1,5 @@
+Route::get('emp/list/','empController@allData')->name('emp.all');
+    Route::post('emp/store/','empController@storeData')->name('emp.store');
+    Route::get('emp/edit/{id}','empController@editData');
+    Route::post('emp/update/{id}','empController@updateData');
+    Route::post('emp/delete/{id}','empController@empDelete');
